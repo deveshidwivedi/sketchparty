@@ -3,12 +3,16 @@ import { useViewportSize } from "@/common/hooks/useViewportSize";
 import { MotionValue, useMotionValue } from "framer-motion";
 import {Dispatch, SetStateAction, forwardRef, useEffect, useRef} from "react";
 import {motion} from "framer-motion";
-const Minimap = forwardRef<{
+
+
+const Minimap = forwardRef<
+HTMLCanvasElement,{
     x: MotionValue<number>;
     y: MotionValue<number>;
     dragging: boolean;
-    setMovedMinimap: Dispatch<SetStateAction<boolean>>;
-}>(({x, y, dragging, setMovedMinimap}, ref)=>{
+    setMovedMiniMap: Dispatch<SetStateAction<boolean>>;
+}
+>(({x, y, dragging, setMovedMiniMap}, ref)=>{
     const containerRef = useRef<HTMLDivElement>(null);
     const {width, height} = useViewportSize();
 
@@ -36,7 +40,7 @@ return (
         height: CANVAS_SIZE.height / 10,    
     }}>
         <canvas
-        ref={ref as any}
+        ref={ref}
         width={CANVAS_SIZE.width}
         height={CANVAS_SIZE.height}
         className="h-full w-full"
@@ -46,7 +50,7 @@ return (
         dragConstraints={containerRef}
         dragElastic={0}
         dragTransition= {{power:0, timeConstant:0}}
-        onDragEnd={()=> setMovedMinimap((prev:boolean)=> !prev)}
+        onDragEnd={()=> setMovedMiniMap((prev:boolean)=> !prev)}
         className="absolute top-0 left-0 cursor-grab border-2 border-red-500"
         style={{
             width: width / 10,
