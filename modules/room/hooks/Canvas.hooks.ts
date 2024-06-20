@@ -36,7 +36,7 @@ export const useDraw = (
     const handleUndo = useCallback(()=> {
         if(ctx){
             savedMoves.pop();
-            
+
             socket.emit("undo");
             
             drawOnUndo(ctx, savedMoves, users);
@@ -128,7 +128,24 @@ export const useDraw = (
                 }
             });
 
-            socket.on
-        })
+            socket.on("user_undo", (userId)=>{
+                setUsers((prevUsers)=>{
+                    const newUsers= {...prevUsers};
+                    newUsers[userId]= newUsers[userId].slice(0, -1);
+                   
+                    if(ctx){
+                        drawOnUndo(ctx, savedMoves, newUsers);
+                        handleEnd();
+                    }
+                    return newUsers;
+                });
+            });
+
+            return () => {
+                socket.off("user_draw");
+                socket.off("user_undo");
+            };
+                
+        });
         
-    }
+    };
