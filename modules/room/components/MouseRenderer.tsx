@@ -1,30 +1,17 @@
 import { socket } from "@/common/lib/socket";
 import { useEffect, useState } from "react";
 import SocketMouse from "./SocketMouse";
+import { useUserIds } from "@/common/recoil/users";
+//error prone
+export const MouseRenderer = () => {
+    const userIds= useUserIds();
 
-const MouseRenderer = () => {
-    const [remoteCursors, setRemoteCursors] = useState<{ [key: string]: { x: number, y: number } }>({});
-
-    useEffect(() => {
-        socket.on("mouse_moved", (newX, newY, socketIdMoved) => {
-            setRemoteCursors(prevState => ({
-                ...prevState,
-                [socketIdMoved]: { x: newX, y: newY }
-            }));
-        });
-
-        return () => {
-            socket.off("mouse_moved");
-        };
-    }, []);
-
-    return (
-        <>
-            {Object.keys(remoteCursors).map((socketId) => (
-                <SocketMouse key={socketId} socketId={socketId} cursorPosition={remoteCursors[socketId]} />
-            ))}
-        </>
-    );
+return (
+    <>
+    {userIds.map((userId)=>{
+        return <SocketMouse userId={userId} key={userId}  />;
+    })}
+    </>
+);
 };
-
 export default MouseRenderer;
