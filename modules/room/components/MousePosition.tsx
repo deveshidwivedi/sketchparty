@@ -4,6 +4,7 @@ import { useInterval, useMouse } from "react-use";
 import {socket} from "@/common/lib/socket";
 import {motion} from "framer-motion";
 
+// to track and emit mouse position changes via socket
 export const MousePosition = () => {
     //setting initial values as 0
     const prevPosition = useRef<{x:number, y:number}>({x:0, y:0});
