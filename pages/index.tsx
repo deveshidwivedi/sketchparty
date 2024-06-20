@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import Canvas from "@/modules/canvas/components/Canvas";
+import Canvas from "@/modules/room/components/Canvas";
 
 
 const inter = Inter({ subsets: ["latin"] });
