@@ -27,8 +27,8 @@ export const MousePosition = () => {
             animate={{ x: docX + 15, y: docY + 15 }}
             transition={{ duration: 0.05, ease: "linear" }}
         >
-            {/* Render only the cursor icon without displaying coordinates */}
-            <BsCursorFill className="-rotate-90" />
+           
+            {docX - x.get()},{docY - y.get()}
         </motion.div>
     );
 };
