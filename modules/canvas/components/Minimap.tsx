@@ -50,6 +50,7 @@ return (
         dragConstraints={containerRef}
         dragElastic={0}
         dragTransition= {{power:0, timeConstant:0}}
+        onDragStart={()=> setMovedMiniMap((prev)=>!prev)}
         onDragEnd={()=> setMovedMiniMap((prev:boolean)=> !prev)}
         className="absolute top-0 left-0 cursor-grab border-2 border-red-500"
         style={{
@@ -60,8 +61,7 @@ return (
         }}
         animate={{x: x.get() / -10, y: y.get() / -10}}
         transition={{duration: 0.1}}
-        >
-       </motion.div>
+        ></motion.div>
     </div>
 )
 });
