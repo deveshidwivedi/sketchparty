@@ -3,16 +3,16 @@ import { useViewportSize } from "@/common/hooks/useViewportSize";
 import { MotionValue, useMotionValue } from "framer-motion";
 import {Dispatch, SetStateAction, forwardRef, useEffect, useRef} from "react";
 import {motion} from "framer-motion";
+import { useBoardPosition } from "../hooks/useBoardPosition";
 
 
 const Minimap = forwardRef<
 HTMLCanvasElement,{
-    x: MotionValue<number>;
-    y: MotionValue<number>;
     dragging: boolean;
     setMovedMiniMap: Dispatch<SetStateAction<boolean>>;
 }
->(({x, y, dragging, setMovedMiniMap}, ref)=>{
+>(({ dragging, setMovedMiniMap}, ref)=>{
+    const {x,y} = useBoardPosition();
     const containerRef = useRef<HTMLDivElement>(null);
     const {width, height} = useViewportSize();
 
