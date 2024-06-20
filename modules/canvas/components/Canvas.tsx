@@ -18,8 +18,11 @@ const Canvas = () => {
 
     const { width, height } = useViewportSize();
 
-    useKeyPressEvent("Control", () => setDragging(true), () => setDragging(false));
-
+    useKeyPressEvent("Control", (e) => {
+        if (e.ctrlKey && !dragging) {
+            setDragging(true);
+        }
+    });
     const x = useMotionValue(0);
     const y = useMotionValue(0);
 
