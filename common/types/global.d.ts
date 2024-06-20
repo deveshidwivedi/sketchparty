@@ -17,5 +17,6 @@ export declare global {
     interface ClientToServerEvents {
         draw: (moves: [number, number][], options: CtxOptions) => void;
         mouse_move: (x:number, y:number) => void;
+        undo: () => void;
     }
 }
