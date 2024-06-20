@@ -15,7 +15,7 @@ export const MousePosition = () => {
 
     useInterval(()=>{
         if(prevPosition.current.x !== docX || prevPosition.current.y !== docY){
-            socket.emit("mouse_move", docX- x.get(), docY- y.getY());
+            socket.emit("mouse_move", docX- x.get(), docY- y.get());
             prevPosition.current = {x:docX, y:docY};
         }
     }, 300);
