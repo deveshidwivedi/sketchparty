@@ -2,9 +2,10 @@ import { useCallback, useEffect, useState } from "react";
 import { socket } from "@/common/lib/socket";
 import { useOptions } from "@/common/recoil/options";
 import { drawOnUndo } from "../helpers/Canvas.helpers";
-import  { useUsers } from "@/common/recoil/users";
+import  usersAtom, { useUsers } from "@/common/recoil/users";
 import { useBoardPosition } from "./useBoardPosition";
 import { getPos } from "@/common/lib/getPos";
+import { useSetRecoilState } from "recoil";
 
 
 const savedMoves: [number, number][][]= [];
@@ -15,7 +16,7 @@ export const useDraw = (
     blocked: boolean,
     handleEnd: () => void
 ) => {
-    const users = useUsers();
+    const users= useUsers();
     const options = useOptions();
     const [drawing, setDrawing] = useState(false);
 
@@ -35,7 +36,7 @@ export const useDraw = (
     const handleUndo = useCallback(()=> {
         if(ctx){
             savedMoves.pop();
-            //may cause error
+            
             socket.emit("undo");
             
             drawOnUndo(ctx, savedMoves, users);
@@ -92,7 +93,42 @@ export const useDraw = (
         handleEndDrawing,
         handleDraw,
         handleStartDrawing,
+        handleUndo,
         drawing,
     }
 
     };
+
+    //hook to listen for user draw & undo events
+    export const useSocketDraw = (
+        ctx: CanvasRenderingContext2D | undefined,
+        handleEnd: () => void
+    ) => {
+
+        const setUsers = useSetRecoilState(usersAtom);
+
+        useEffect(()=>{
+            socket.on("user_draw", (newMoves, options, userId)=> {
+                if(ctx){
+                    ctx.lineWidth= options.lineWidth;
+                    ctx.strokeStyle= options.lineColor;
+                    ctx.beginPath();    
+
+                    newMoves.forEach(([x,y])=> {
+                        ctx.lineTo(x,y);
+                    });
+                    ctx.stroke();
+                    ctx.closePath();
+                    handleEnd();
+                    setUsers((prevUsers)=> {
+                        const newUsers= {...prevUsers};
+                        newUsers[userId] = [...newUsers[userId], newMoves];
+                        return newUsers;
+                    });
+                }
+            });
+
+            socket.on
+        })
+        
+    }
