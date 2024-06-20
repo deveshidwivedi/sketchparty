@@ -27,13 +27,18 @@ io.on("connection", (socket)=>{
 
     socket.on("draw", (moves, options)=>{
         console.log("drawing");
-        socket.broadcast.emit("socket_draw", moves, options);
+        socket.broadcast.emit("user_draw", moves, options, socket.id);
     });
 
     socket.on("mouse_move", (x,y) => {
         console.log("mouse move");
         socket.broadcast.emit("mouse_moved", x, y, socket.id);
     
+    });
+
+    socket.on("undo", ()=>{
+        console.log("undo");
+        socket.broadcast.emit("user_undo", socket.id);
     });
 
     socket.on("disconnect", ()=>{
