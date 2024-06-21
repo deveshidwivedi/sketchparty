@@ -9,10 +9,10 @@ export declare global {
         options: CtxOptions;
     }
 
-    type Room =Map<string, Move[]>;
+    type Room = {users: Map<string, Move[]>; drawed: Move[]};
 
     interface ServerToClientEvents {
-        room: (room: string)=> void;
+        room: (room: Room, usersToParse: string)=> void;
         created: (roomId: string) => void;
         joined:(roomId :string, failed?:boolean) => void;
        user_draw: (move: Move, userId: string) => void;
