@@ -108,8 +108,12 @@ export const useSocketDraw = (
 ) => {
     const setUsers = useSetRecoilState(usersAtom);
 
+    useEffect(()=> {
+        socket.emit("joined_room")
+    },[]);
+
     useEffect(() => {
-        socket.on("joined", (roomJSON) => {
+        socket.on("room", (roomJSON) => {
             const room: Room = new Map(JSON.parse(roomJSON));
 
             room.forEach((userMoves, userId) => {
@@ -120,7 +124,7 @@ export const useSocketDraw = (
         });
 
         return () => {
-            socket.off("joined");
+            socket.off("room");
         }
     }, [ctx, handleEnd, setUsers]);
 
