@@ -5,7 +5,6 @@ import { useRef, useState, useEffect } from "react";
 import { useKeyPressEvent } from "react-use";
 import { useDraw, useSocketDraw } from "../hooks/Canvas.hooks";
 import { socket } from "@/common/lib/socket";
-import { drawFromSocket } from "../helpers/Canvas.helpers";
 import Minimap from "./Minimap";
 
 const Canvas = () => {
@@ -64,7 +63,7 @@ const Canvas = () => {
         }
     }, [dragging]);
 
-    useSocketDraw(ctx, copyCanvasToSmall);
+    useSocketDraw(ctx,drawing,  copyCanvasToSmall);
     return (
         <div className="relative h-full w-full overflow-hidden">
             <button className="absolute top-0" onClick={handleUndo}>
