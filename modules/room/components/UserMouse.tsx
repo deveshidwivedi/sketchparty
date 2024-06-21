@@ -4,6 +4,8 @@ import { socket } from "@/common/lib/socket";
 import { motion } from "framer-motion";
 import { BsCursorFill } from "react-icons/bs";
 
+
+//cursor issue
 const UserMouse = ({ userId }: { userId: string }) => {
     const boardPos = useBoardPosition();
     const [x, setX] = useState(boardPos.x.get());
