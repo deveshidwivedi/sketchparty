@@ -4,7 +4,6 @@ import { socket } from "@/common/lib/socket";
 import { motion } from "framer-motion";
 import { BsCursorFill } from "react-icons/bs";
 
-
 //cursor issue
 const UserMouse = ({ userId }: { userId: string }) => {
     const boardPos = useBoardPosition();
@@ -13,11 +12,16 @@ const UserMouse = ({ userId }: { userId: string }) => {
     const [pos, setPos] = useState({ x: -1, y: -1 });
 
     useEffect(() => {
-        socket.on("mouse_moved", (newX, newY, socketIdMoved) => {
+        const handleMouseMove = (newX: number, newY: number, socketIdMoved: string) => {
             if (socketIdMoved === userId) {
                 setPos({ x: newX, y: newY });
             }
-        });
+        };
+
+        socket.on("mouse_moved", handleMouseMove);
+        return () => {
+            socket.off("mouse_moved", handleMouseMove);
+        };
     }, [userId]);
 
     useEffect(() => {
@@ -32,7 +36,7 @@ const UserMouse = ({ userId }: { userId: string }) => {
 
     return (
         <motion.div
-            className={`absolute top-0 left-0 text-blue-800 ${pos.x === -1 && 'hidden'}pointer-events-none`}
+            className={`absolute top-0 left-0 text-blue-800 ${pos.x === -1 ? 'hidden' : ''} pointer-events-none`}
             animate={{ x: pos.x + x, y: pos.y + y }}
             transition={{ duration: 0.3, ease: "linear" }}
         >

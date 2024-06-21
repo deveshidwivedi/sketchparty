@@ -3,7 +3,6 @@ import { useBoardPosition } from "../hooks/useBoardPosition";
 import { useInterval, useMouse } from "react-use";
 import { socket } from "@/common/lib/socket";
 import { motion } from "framer-motion";
-import { BsCursorFill } from "react-icons/bs";
 import { getPos } from "@/common/lib/getPos";
 
 // To track and emit mouse position changes via socket
@@ -28,7 +27,6 @@ export const MousePosition = () => {
             animate={{ x: docX + 15, y: docY + 15 }}
             transition={{ duration: 0.05, ease: "linear" }}
         >
-           
             {getPos(docX, x).toFixed(0)} | {getPos(docY, y).toFixed(0)}
         </motion.div>
     );
