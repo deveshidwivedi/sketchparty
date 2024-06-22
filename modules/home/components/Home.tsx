@@ -33,12 +33,12 @@ const Home = () => {
                 openModal(<NotFoundModal id={roomId} />)
             }
         };
-
+        socket.on("created", handleCreated);
         socket.on("joined", handleJoinedRoom);
 
 
         return () => {
-            socket.off("created");
+            socket.off("created", handleCreated);
             socket.off("joined", handleJoinedRoom);
         };
     }, [openModal, roomId, router, setAtomRoomId]);
