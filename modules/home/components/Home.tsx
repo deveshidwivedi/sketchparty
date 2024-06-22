@@ -1,7 +1,14 @@
 import { FormEvent, useEffect, useState } from 'react';
+
 import { useRouter } from 'next/router';
+
 import { socket } from '@/common/lib/socket';
+
 import { useSetRoomId } from '@/common/recoil/room';
+
+import NotFoundModal from '../modals/NotFound';
+
+import { useModal } from '@/common/recoil/modal';
 
 const Home = () => {
     const [roomId, setRoomId] = useState("");
@@ -9,6 +16,8 @@ const Home = () => {
     const setAtomRoomId = useSetRoomId();
 
     const router = useRouter();
+
+    const {openModal} = useModal();
 
     useEffect(() => {
         const handleCreated = (roomIdFromServer: string) => {
@@ -21,7 +30,7 @@ const Home = () => {
                 setAtomRoomId(roomIdFromServer);
                 router.push(roomIdFromServer);
             } else {
-                console.log("Failed to join room");
+                openModal(<NotFoundModal id={roomId} />)
             }
         };
 
@@ -32,7 +41,7 @@ const Home = () => {
             socket.off("created", handleCreated);
             socket.off("joined", handleJoined);
         };
-    }, [router, setAtomRoomId]);
+    }, [openModal, roomId, router, setAtomRoomId]);
 
     const handleCreateRoom = () => {
         socket.emit("create_room");
@@ -81,9 +90,7 @@ const Home = () => {
                 </button>
             </div>
 
-            <footer className="mt-auto mb-8 text-sm">
-                <p>© 2024 SketchParty. All Rights Reserved.</p>
-            </footer>
+           
         </div>
     );
 };

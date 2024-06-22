@@ -2,21 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    @apply font-montserrat font-medium;
-}
-
-body{
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    overscroll-behavior: contain;
-
-}
-
-html {
-    height: -webkit-fill-available;
-}
-
 #__next, #portal {
     position: absolute;
     top:0;
