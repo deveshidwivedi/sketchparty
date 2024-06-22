@@ -25,7 +25,7 @@ const Home = () => {
             router.push(roomIdFromServer);
         };
 
-        const handleJoined = (roomIdFromServer: string, failed?: boolean) => {
+        const handleJoinedRoom = (roomIdFromServer: string, failed?: boolean) => {
             if (!failed) {
                 setAtomRoomId(roomIdFromServer);
                 router.push(roomIdFromServer);
@@ -34,12 +34,12 @@ const Home = () => {
             }
         };
 
-        socket.on("created", handleCreated);
-        socket.on("joined", handleJoined);
+        socket.on("joined", handleJoinedRoom);
+
 
         return () => {
-            socket.off("created", handleCreated);
-            socket.off("joined", handleJoined);
+            socket.off("created");
+            socket.off("joined", handleJoinedRoom);
         };
     }, [openModal, roomId, router, setAtomRoomId]);
 
