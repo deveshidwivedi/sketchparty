@@ -11,6 +11,13 @@ export declare global {
 
     type Room = {users: Map<string, Move[]>; drawed: Move[]};
 
+    interface ClientRoom{
+        id:string;
+        users: Map<string, Move[]>;
+        movesWithoutUser: Move[];
+        myMoves: Move[];
+    }
+
     interface ServerToClientEvents {
         room: (room: Room, usersToParse: string)=> void;
         created: (roomId: string) => void;

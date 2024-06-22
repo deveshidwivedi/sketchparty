@@ -11,7 +11,7 @@ export const useSetRoomId = () => {
     const setRoomId= useSetRecoilState(roomAtom);
 
     const handleSetRoomId = (id: string) => {   
-        setRoomId({id});
+        setRoomId((prev)=> ({...prev,id}));
     };
-    return handleSetRoomId
+    return handleSetRoomId;
 };
