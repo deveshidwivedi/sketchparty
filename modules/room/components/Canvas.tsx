@@ -8,7 +8,9 @@ import { useRef, useState, useEffect } from "react";
 
 import { useKeyPressEvent } from "react-use";
 
-import { useDraw, useSocketDraw } from "../hooks/Canvas.hooks";
+import { useDraw } from "../hooks/useDraw";
+
+import { useSocketDraw } from "../hooks/useSocketDraw";
 
 import { socket } from "@/common/lib/socket";
 
