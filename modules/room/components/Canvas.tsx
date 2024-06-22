@@ -1,17 +1,29 @@
 import { CANVAS_SIZE } from "@/common/constants/canvasSize";
+
 import { useViewportSize } from "@/common/hooks/useViewportSize";
+
 import { useMotionValue, motion } from "framer-motion";
+
 import { useRef, useState, useEffect } from "react";
+
 import { useKeyPressEvent } from "react-use";
+
 import { useDraw, useSocketDraw } from "../hooks/Canvas.hooks";
+
 import { socket } from "@/common/lib/socket";
+
 import Minimap from "./Minimap";
 
+import room, { useRoom } from "@/common/recoil/room";
+import { drawAllMoves } from "../helpers/Canvas.helpers";
+
+
 const Canvas = () => {
+    const room= useRoom();
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const smallCanvasRef = useRef<HTMLCanvasElement>(null);
 
-    const [ctx, setCtx] = useState<CanvasRenderingContext2D | undefined>();
+    const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
     const [dragging, setDragging] = useState(false);
     const [, setMovedMiniMap] = useState(false);
 
@@ -44,9 +56,10 @@ const Canvas = () => {
 
     const { handleDraw, handleEndDrawing, handleStartDrawing, drawing, handleUndo } = useDraw(
         ctx,
-        dragging,
-        copyCanvasToSmall
+        dragging
     );
+
+    useSocketDraw(ctx,drawing);
 
     useEffect(() => {
         const newCtx = canvasRef.current?.getContext("2d");
@@ -63,7 +76,18 @@ const Canvas = () => {
         }
     }, [dragging]);
 
-    useSocketDraw(ctx,drawing,  copyCanvasToSmall);
+    useEffect(()=> {
+        if(ctx) socket.emit("joined_room");
+    },[ctx]);
+
+    useEffect(()=> {
+        if(ctx){
+            drawAllMoves(ctx, room);
+            copyCanvasToSmall();
+        };
+    }, [ctx, room]);
+
+   
     return (
         <div className="relative h-full w-full overflow-hidden">
             <button className="absolute top-0" onClick={handleUndo}>
@@ -123,3 +147,7 @@ const Canvas = () => {
 };
 
 export default Canvas;
+function copyCanvasToSmall() {
+    throw new Error("Function not implemented.");
+}
+
