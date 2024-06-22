@@ -2,3 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    @apply font-montserrat font-medium;
+}
+
+body{
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    overscroll-behavior: contain;
+
+}
+
+html {
+    height: -webkit-fill-available;
+}
+
+#__next, #portal {
+    position: absolute;
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 0; 
+    overflow-x: hidden;
+    overflow-y: scroll;
+    overflow-y: overlay; 
+}
+
+#portal {
+    z-index: 1;
+}
