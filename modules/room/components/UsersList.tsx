@@ -1,6 +1,6 @@
 import { useRoom } from "@/common/recoil/room";
 
-const UserList = () => {
+const UsersList = () => {
     const room= useRoom();
 
     return (
@@ -23,3 +23,4 @@ const UserList = () => {
         </div>
     );
 };
+export default UsersList;
