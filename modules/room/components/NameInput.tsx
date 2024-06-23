@@ -46,7 +46,7 @@ const NameInput = () => {
         <form className="flex flex-col items-center" onSubmit={handleJoinRoom}>
             <h1 className="mt-24 text-extra font-extrabold leading-tight">SketchParty</h1>
             <h3 className="text-2xl">Sketching and Fun for everyone</h3>
-        <div className="mt-10 mb-3 flex flex-col gap-2">
+        <div className="mt-8 mb-6 flex flex-col gap-2">
             <label className="self-start font-bold leading-tight">Enter Your Name</label>
             <input className="rounded-xl border p-5 py-1" id="room-id" placeholder="Username" value={name} onChange={(e)=> setName(e.target.value)}></input>
         </div>
