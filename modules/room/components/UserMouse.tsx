@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { BsCursorFill } from "react-icons/bs";
 
 //cursor issue
-const UserMouse = ({ userId }: { userId: string }) => {
+const UserMouse = ({ userId, username, }: { userId: string, username: string }) => {
     const boardPos = useBoardPosition();
     const [x, setX] = useState(boardPos.x.get());
     const [y, setY] = useState(boardPos.y.get());
@@ -41,6 +41,7 @@ const UserMouse = ({ userId }: { userId: string }) => {
             transition={{ duration: 0.1, ease: "linear" }}
         >
             <BsCursorFill className="-rotate-90" />
+            <p className="ml-2">{username}</p>
         </motion.div>
     );
 };

@@ -1,4 +1,4 @@
-import { useOptions } from "@/common/recoil/options";
+import { useOptionsValue } from "@/common/recoil/options";
 import { useUsers } from "@/common/recoil/users";
 import { useState, useEffect, useCallback} from "react";
 import { useBoardPosition } from "./useBoardPosition";
@@ -23,7 +23,7 @@ export const useDraw = (
     const movedX = boardPosition.x;
     const movedY = boardPosition.y;
 
-    const options = useOptions();
+    const options = useOptionsValue();
 
     useEffect(() => {
         if (ctx) {

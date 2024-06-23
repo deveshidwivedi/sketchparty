@@ -22,18 +22,19 @@ const RoomContextProvider = ({ children }: { children: ReactChild }) => {
     // socket events for user join/leave and clean up listeners
     useEffect(()=> {
 
-        socket.on("room",(room, usersToParse)=> {
-            const users= new Map< string, Move[]>(JSON.parse(usersToParse));
-
+        socket.on("room",(room, usersMovesToParse, usersToParse)=> {
+            const usersMoves= new Map< string, Move[]>(JSON.parse(usersMovesToParse));
+            const users= new Map< string, string>(JSON.parse(usersToParse))
             setRoom((prev)=>({
                 ...prev,
                 users,
+                usersMoves,
                 movesWithoutUser: room.drawed,
             }));
         });
 
-        socket.on("new_user", (newUser)=> {
-            handleAddUser(newUser);
+        socket.on("new_user", (userId, username)=> {
+            handleAddUser(userId, username);
         });
 
 
