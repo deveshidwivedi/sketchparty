@@ -1,6 +1,7 @@
 import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 
-import { roomAtom } from "./room.atom";
+import { DEFAULT_ROOM, roomAtom } from "./room.atom";
+import { getNextColor } from "@/common/lib/getNextColor";
 
 export const useRoom = () => {
     const room = useRecoilValue(roomAtom);
@@ -22,7 +23,7 @@ export const useSetRoomId = () => {
     const setRoomId= useSetRecoilState(roomAtom);
 
     const handleSetRoomId = (id: string) => {   
-        setRoomId((prev)=> ({...prev,id}));
+        setRoomId({...DEFAULT_ROOM, id});
     };
     return handleSetRoomId;
 };
@@ -30,12 +31,16 @@ export const useSetRoomId = () => {
 export const useSetUsers = () => {
     const setRoom = useSetRecoilState(roomAtom);
 
-    const handleAddUser= (userId: string, username: string) => {
+    const handleAddUser= (userId: string,  name: string) => {
         setRoom((prev)=> {
             const newUsers = prev.users;
             const newUsersMoves = prev.usersMoves;
 
-            newUsers.set(userId, username);
+            const color= getNextColor([...newUsers.values()].pop()?.color);
+            newUsers.set(userId, {
+                name,
+                color,
+            });
             newUsersMoves.set(userId, []); 
             return {...prev, users: newUsers, usersMoves: newUsersMoves};
         });
