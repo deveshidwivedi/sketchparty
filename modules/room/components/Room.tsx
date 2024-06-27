@@ -1,9 +1,9 @@
 import { useRoom} from "@/common/recoil/room";
 
 import RoomContextProvider from "../context/Room.context";
-import Canvas from "./Canvas";
-import { MousePosition } from "./MousePosition";
-import MouseRenderer from "./MouseRenderer";
+import Canvas from "./board/Canvas";
+import { MousePosition } from "./board/MousePosition";
+import MouseRenderer from "./board/MouseRenderer";
 import { ToolBar } from "./toolbar/ToolBar";
 import NameInput from "./NameInput";
 import UsersList from "./UsersList";

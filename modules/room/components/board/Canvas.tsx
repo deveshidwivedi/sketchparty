@@ -8,16 +8,16 @@ import { useRef, useState, useEffect } from "react";
 
 import { useKeyPressEvent } from "react-use";
 
-import { useDraw } from "../hooks/useDraw";
+import { useDraw } from "@/common/hooks/drawing";
 
-import { useSocketDraw } from "../hooks/useSocketDraw";
+import { useSocketDraw } from "../../hooks/useSocketDraw";
 
 import { socket } from "@/common/lib/socket";
 
 import Minimap from "./Minimap";
 
 import room, { useRoom } from "@/common/recoil/room";
-import { drawAllMoves } from "../helpers/Canvas.helpers";
+import { drawAllMoves } from "../../helpers/Canvas.helpers";
 
 
 const Canvas = () => {

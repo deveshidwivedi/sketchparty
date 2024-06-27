@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useBoardPosition } from "../hooks/useBoardPosition";
+import { useBoardPosition } from "../../hooks/useBoardPosition";
 import { useInterval, useMouse } from "react-use";
 import { socket } from "@/common/lib/socket";
 import { motion } from "framer-motion";

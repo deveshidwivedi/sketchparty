@@ -3,7 +3,7 @@ import { useViewportSize } from "@/common/hooks/useViewportSize";
 import { MotionValue, useMotionValue } from "framer-motion";
 import {Dispatch, SetStateAction, forwardRef, useEffect, useRef} from "react";
 import {motion} from "framer-motion";
-import { useBoardPosition } from "../hooks/useBoardPosition";
+import { useBoardPosition } from "../../hooks/useBoardPosition";
 
 
 const Minimap = forwardRef<
