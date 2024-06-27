@@ -35,7 +35,7 @@ HTMLCanvasElement,{
     }, [dragging, miniX, miniY, x, y]);
 //the mini version of canvas on top right corner
 return (
-    <div className="absolute right-10 top-10 z-30 rounded-lg bg-zinc-200" ref={containerRef} style={{
+    <div className="absolute right-10 top-10 z-30 overflow-hidden rounded-lg bg-zinc-50" ref={containerRef} style={{
         width: CANVAS_SIZE.width / 7,
         height: CANVAS_SIZE.height / 7,    
     }}>
