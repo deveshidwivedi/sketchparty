@@ -7,19 +7,22 @@ import MouseRenderer from "./MouseRenderer";
 import { ToolBar } from "./toolbar/ToolBar";
 import NameInput from "./NameInput";
 import UsersList from "./UsersList";
+import { useRef } from "react";
 
 
 
 const Room = () => {
     const room = useRoom();
-    if(!room.id) return <NameInput />
+
+    const undoRef= useRef<HTMLButtonElement>(null);
+    if(!room.id) return <NameInput />;
 
      return (
         <RoomContextProvider>
             <div className="relative h-full w-full overflow-hidden">
             <UsersList />
-            <ToolBar />
-            <Canvas />
+            <ToolBar undoRef={undoRef}/>
+            <Canvas undoRef={undoRef}/>
             <MousePosition />
             <MouseRenderer />
             </div>
