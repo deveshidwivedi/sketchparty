@@ -2,11 +2,13 @@ export declare global {
     interface CtxOptions{
         lineWidth: number;
         lineColor: string;
+        erase: boolean;
     }
 
     interface Move {
         path: [number, number][];
         options: CtxOptions;
+        eraser: boolean;
     }
 
     type Room = {usersMoves: Map<string, Move[]>;
