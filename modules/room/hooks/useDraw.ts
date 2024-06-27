@@ -1,5 +1,4 @@
 import { useOptionsValue } from "@/common/recoil/options";
-import { useUsers } from "@/common/recoil/users";
 import { useState, useEffect, useCallback} from "react";
 import { useBoardPosition } from "./useBoardPosition";
 import { socket } from "@/common/lib/socket";
@@ -31,7 +30,18 @@ export const useDraw = (
             ctx.lineCap = "round";
             ctx.lineWidth = options.lineWidth;
             ctx.strokeStyle = options.lineColor;
+            if(options.erase) ctx.globalCompositeOperation = "destination-out";
         }
+    });
+
+    useEffect(()=> {
+        socket.on("your_move", (move)=>{
+            handleAddMyMove(move);
+        });
+
+        return ()=> {
+            socket.off("your_move");
+        };
     });
 
     const handleUndo = useCallback(() => {
@@ -82,11 +92,13 @@ export const useDraw = (
 
         const move: Move = {
             path: tempMoves,
-            options
+            options,
+            timestamp: 0,
+            eraser: options.erase,
         };
 
-        handleAddMyMove(move);
         tempMoves = [];
+        ctx.globalCompositeOperation= "source-over"
 
         socket.emit("draw", move);
 

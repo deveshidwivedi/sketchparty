@@ -8,6 +8,7 @@ import { ToolBar } from "./toolbar/ToolBar";
 import NameInput from "./NameInput";
 import UsersList from "./UsersList";
 import { useRef } from "react";
+import Chat from "./chat/Chat";
 
 
 
@@ -25,6 +26,7 @@ const Room = () => {
             <Canvas undoRef={undoRef}/>
             <MousePosition />
             <MouseRenderer />
+            <Chat />
             </div>
         </RoomContextProvider>
      );
