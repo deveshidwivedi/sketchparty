@@ -8,6 +8,7 @@ export declare global {
     interface Move {
         path: [number, number][];
         options: CtxOptions;
+        timestamp: number;
         eraser: boolean;
     }
 
@@ -15,6 +16,14 @@ export declare global {
          drawed: Move[];
          users: Map<string, string>;
         };
+    
+    interface Message{
+        userId: string;
+        username: string;
+        color: string;
+        msg: string;
+        id:number;
+    }
 
     interface User {
         name:string;
@@ -30,6 +39,8 @@ export declare global {
     }
 
     interface ServerToClientEvents {
+        your_move: (move: Move)=> void;
+        new_msg: (userId: string, msg: string)=> void;
         room_exists: (exists: boolean) => void;
         room: (room: Room, usersMovesToParse: string, usersToParse: string)=> void;
         created: (roomId: string) => void;
@@ -50,5 +61,6 @@ export declare global {
         join_room: (room: string, username: string) => void;
         joined_room: () => void;
         leave_room: () => void;
+        send_msg:  (msg: string) => void;
     }
 }

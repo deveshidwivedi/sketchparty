@@ -1,4 +1,5 @@
 import ColorPicker from "./ColorPicker";
+import Eraser from "./Eraser";
 import LineWidthPicker from "./LineWidthPicker";
 import { BsFillChatFill, BsFillImageFill, BsThreeDots } from "react-icons/bs";
 import { HiOutlineDownload } from "react-icons/hi";
@@ -12,6 +13,7 @@ export const ToolBar = () => {
         >
             <ColorPicker />
             <LineWidthPicker />
+            <Eraser />
          <button className="text-xl">
             <BsFillChatFill />
          </button>
