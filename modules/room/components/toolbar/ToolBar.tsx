@@ -5,6 +5,7 @@ import LineWidthPicker from "./LineWidthPicker";
 import { BsFillChatFill, BsFillImageFill, BsThreeDots } from "react-icons/bs";
 import { HiOutlineDownload } from "react-icons/hi";
 import { FaUndo } from "react-icons/fa";
+import ShapeSelector from "./ShapeSelector";
 
 export const ToolBar = ({undoRef}: {undoRef: RefObject<HTMLButtonElement>}) => { 
     return (
@@ -18,6 +19,7 @@ export const ToolBar = ({undoRef}: {undoRef: RefObject<HTMLButtonElement>}) => {
          </button>
          <div className="h-px w-full bg-white" />
             <ColorPicker />
+            <ShapeSelector/>
             <LineWidthPicker />
             <Eraser />
          <button className="text-xl">

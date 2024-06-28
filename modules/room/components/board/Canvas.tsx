@@ -11,10 +11,12 @@ import room, { useRoom } from "@/common/recoil/room";
 import { drawAllMoves } from "../../helpers/Canvas.helpers";
 import { useBoardPosition } from "../../hooks/useBoardPosition";
 import Background from "./Background";
+import { useOptionsValue } from "@/common/recoil/options";
 
 
 const Canvas = ({undoRef}: {undoRef: RefObject<HTMLButtonElement>}) => {
     const room= useRoom();
+    const options= useOptionsValue();
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const smallCanvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -82,10 +84,10 @@ const Canvas = ({undoRef}: {undoRef: RefObject<HTMLButtonElement>}) => {
 
     useEffect(()=> {
         if(ctx){
-            drawAllMoves(ctx, room);
+            drawAllMoves(ctx, room, options);
             copyCanvasToSmall();
         };
-    }, [ctx, room]);
+    }, [ctx, room, options]);
 
    
     return (
