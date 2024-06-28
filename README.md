@@ -1,6 +1,6 @@
 # 🎨SketchParty: Sketching and Fun for Everyone!
 
-- About
+- [About](#about)
 - Technologies Used
 - Features
 - Future Improvements
