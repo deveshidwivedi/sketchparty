@@ -29,6 +29,7 @@
   <a id="features"></a>
 # 🌟Features 
 -   **Real-Time Collaboration**: Work together on a shared canvas with instant updates.
+  
   ![Screenshot 2024-06-28 184947](https://github.com/deveshidwivedi/sketchparty/assets/120312681/90143c7b-7c0e-4020-8541-9e16aed88682)
   ![Screenshot 2024-06-28 185339](https://github.com/deveshidwivedi/sketchparty/assets/120312681/6380e092-5fca-47c3-af7c-3ddd8f2f607c)
   ![Screenshot 2024-06-28 185415](https://github.com/deveshidwivedi/sketchparty/assets/120312681/edc18ba7-92bc-49c8-b0ff-d83a4cf602db)
@@ -100,7 +101,13 @@
 
   <a id="demo"></a>
 # 🎥Demo Video
-...
+
+
+
+https://github.com/deveshidwivedi/sketchparty/assets/120312681/4561f8a3-2f9d-41ae-acf3-1fc4c54593a2
+
+
+
 
 <br />
 
