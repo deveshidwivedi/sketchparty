@@ -8,6 +8,7 @@ import { FaUndo } from "react-icons/fa";
 import ShapeSelector from "./ShapeSelector";
 import { useRefs } from "../../hooks/useRefs";
 import { CANVAS_SIZE } from "@/common/constants/canvasSize";
+import ImageChoser from "./ImageChoser";
 
 export const ToolBar = ( ) => {
     const {canvasRef, bgRef, undoRef}= useRefs();
@@ -43,9 +44,7 @@ export const ToolBar = ( ) => {
             <ShapeSelector/>
             <LineWidthPicker />
             <Eraser />
-         <button className="text-xl">
-            <BsFillImageFill />
-         </button>
+            <ImageChoser />
          <button className="text-xl">
             <BsThreeDots />
          </button>
