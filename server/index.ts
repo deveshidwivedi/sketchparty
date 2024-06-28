@@ -3,6 +3,7 @@ import express from "express";
 import next from "next";
 import { Server } from "socket.io";
 import {} from "@/common/types/global";
+import { socket } from "@/common/lib/socket";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const dev = process.env.NODE_ENV !== "production";
@@ -35,17 +36,6 @@ nextApp.prepare().then(async () => {
         room?.usersMoves.get(socketId)?.pop();
     };
 
-    const leaveRoom = (roomId: string, socketId: string) => {
-        const room= rooms.get(roomId);
-
-        if(!room) return;
-
-        const userMoves= room?.usersMoves.get(socketId)!;
-        room?.drawed.push(...userMoves);
-        room?.users.delete(socketId);
-
-        console.log("user left room");
-    };
 
     io.on("connection", (socket) => {
 //get the room id the socket is currently in, excluding its own id
@@ -54,6 +44,22 @@ nextApp.prepare().then(async () => {
             if(!joinedRoom) return socket.id;
             return joinedRoom;
         }
+        const leaveRoom = (roomId: string, socketId: string) => {
+            const room= rooms.get(roomId);
+    
+            if(!room) return;
+    
+            const userMoves= room.usersMoves.get(socketId)!;
+            
+            if(userMoves) room.drawed.push(...userMoves);
+    
+            room.users.delete(socketId);
+            socket.leave(roomId);
+    
+            console.log("user left room");
+        };
+    
+
         console.log("connection");
 
         socket.on("create_room", (username) => {

@@ -3,7 +3,7 @@ import { socket } from "@/common/lib/socket";
 import { useSetRoom, useSetUsers } from "@/common/recoil/room/room.hooks";
 import usersAtom, { useUserIds } from "@/common/recoil/users";
 import { MotionValue, useMotionValue } from "framer-motion";
-import { createContext, ReactChild, useEffect } from "react";
+import { createContext, ReactChild, RefObject, useEffect, useRef } from "react";
 import { useSet } from "react-use";
 import { useSetRecoilState } from "recoil";
 
@@ -11,6 +11,9 @@ import { useSetRecoilState } from "recoil";
 export const roomContext = createContext<{
     x: MotionValue<number>;
     y: MotionValue<number>;
+    undoRef: RefObject<HTMLButtonElement>;
+    canvasRef: RefObject<HTMLCanvasElement>;
+    bgRef: RefObject<HTMLCanvasElement>;
 }>(null!);
 
 const RoomContextProvider = ({ children }: { children: ReactChild }) => {
@@ -19,6 +22,9 @@ const RoomContextProvider = ({ children }: { children: ReactChild }) => {
      const {handleAddUser, handleRemoveUser} = useSetUsers();
     const x = useMotionValue(0);
     const y = useMotionValue(0);
+    const undoRef = useRef<HTMLButtonElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const bgRef = useRef<HTMLCanvasElement>(null);
 
     // socket events for user join/leave and clean up listeners
     useEffect(()=> {
@@ -64,7 +70,7 @@ const RoomContextProvider = ({ children }: { children: ReactChild }) => {
     }, [handleAddUser, handleRemoveUser, setRoom]);
 //motion values to context consumers
     return (
-        <roomContext.Provider value={{ x, y }}>
+        <roomContext.Provider value={{ x, y, bgRef, undoRef, canvasRef}}>
             {children}
         </roomContext.Provider>
     );
