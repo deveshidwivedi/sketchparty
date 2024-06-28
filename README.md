@@ -1,40 +1,113 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎨SketchParty: Sketching and Fun for Everyone!
 
-## Getting Started
+- About
+- Technologies Used
+- Features
+- Future Improvements
+- Getting Started
+- Demo Video
+- Contributing
+  
+  <br />
 
-First, run the development server:
+<a id="about"></a>
+# 📖About 
+- Sketch Party is a real-time sketching platform that allows users to create, join, and collaborate in rooms with shared canvases. Additionally, users can chat while in the room to keep conversations flowing!
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- This project was born out of my curiosity about how such collaborative platforms work and my desire to create one from scratch.
+  
+<br />
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  <a id="technologies-used"></a>
+# 🛠️Technologies Used
+-   **Next.js**: Provides a robust framework for server-rendered React applications.
+-   **TypeScript**: Ensures type safety and better developer experience.
+-   **Socket.io**: Enables real-time, bidirectional communication between client and server.
+  
+<br />
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+  <a id="features"></a>
+# 🌟Features 
+-   **Real-Time Collaboration**: Work together on a shared canvas with instant updates.
+  ![Screenshot 2024-06-28 184947](https://github.com/deveshidwivedi/sketchparty/assets/120312681/90143c7b-7c0e-4020-8541-9e16aed88682)
+  ![Screenshot 2024-06-28 185339](https://github.com/deveshidwivedi/sketchparty/assets/120312681/6380e092-5fca-47c3-af7c-3ddd8f2f607c)
+  ![Screenshot 2024-06-28 185415](https://github.com/deveshidwivedi/sketchparty/assets/120312681/edc18ba7-92bc-49c8-b0ff-d83a4cf602db)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+-   **User Customization**: Unique usernames and colors for each user.
+   ![Screenshot 2024-06-28 185506](https://github.com/deveshidwivedi/sketchparty/assets/120312681/c6d93994-6052-47e9-9fd1-f3f984f7e426)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+-   **Drawing Tools**: Choose colors, adjust line width, use erasers, and undo actions.
+    ![Screenshot 2024-06-28 185616](https://github.com/deveshidwivedi/sketchparty/assets/120312681/bab25fa8-6904-420e-b5fb-e72c096975a4)
+    ![Screenshot 2024-06-28 185648](https://github.com/deveshidwivedi/sketchparty/assets/120312681/7b7922a6-1a45-46a4-8170-4d0c0c15f305)
+    ![Screenshot 2024-06-28 185714](https://github.com/deveshidwivedi/sketchparty/assets/120312681/2033e891-e69f-48c7-904e-7db625a696fc)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+-   **Shapes**: Draw shapes.
+   ![Screenshot 2024-06-28 190132](https://github.com/deveshidwivedi/sketchparty/assets/120312681/e5042727-d7dd-4ff2-998d-7ed450d98a00)
+   ![Screenshot 2024-06-28 190044](https://github.com/deveshidwivedi/sketchparty/assets/120312681/ce596462-dd23-4f71-943e-6dc4eaa47b60)
 
-## Learn More
+-   **Images**: Annotate images.
+    ![Screenshot 2024-06-28 191039](https://github.com/deveshidwivedi/sketchparty/assets/120312681/ae7b7dc9-8dc8-4075-a9af-a739ffcfe449)
 
-To learn more about Next.js, take a look at the following resources:
+-   **Real-Time Chat**: Keep the conversation flowing with an integrated chat.
+   ![Screenshot 2024-06-28 191047](https://github.com/deveshidwivedi/sketchparty/assets/120312681/c41c9e8c-2b9d-415f-ae11-caf93738d845)
+  ![Screenshot 2024-06-28 191114](https://github.com/deveshidwivedi/sketchparty/assets/120312681/199ae2f8-f3b5-4fda-a6f8-2157792e5e96)
+  ![Screenshot 2024-06-28 191056](https://github.com/deveshidwivedi/sketchparty/assets/120312681/b825163c-f15f-4fbb-a362-c5dc211570a4)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  
+<br />
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+  <a id="future-improvements"></a>
+# 🚀Future Improvements
+-   **Download Option**: Save your sketches directly from the platform.
+-   **Emoji Reactions**: Add emoji reactions for more interactive collaboration.
+-   **Voice Chat**: Communicate in real-time using voice, making collaboration even easier and more dynamic.
+  
+<br />
 
-## Deploy on Vercel
+   <a id="installation"></a>
+# 🔧Installation
+-   Clone the repo:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```
+    git clone https://github.com/your-username/sketch-party.git 
+   
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   Navigate to the project directory:
+
+    ```
+    cd sketch-party 
+    ```
+    
+-   Install dependencies:
+
+    ``` 
+    npm install
+    ```
+    
+-   Run the development server:
+  
+     ```
+    npm run dev
+    ```
+    
+-   Open your browser and navigate to:
+  
+    ```
+    http://localhost:3000
+    ```
+    
+<br />
+
+  <a id="demo"></a>
+# 🎥Demo Video
+...
+
+<br />
+
+  <a id="contribute"></a>
+# 🤝 Contributing
+### 🐞Bug Reporting
+- Feel free to  [open an issue](https://github.com/deveshidwivedi/sketchparty/issues)  on GitHub if you find any bug.
+### ✨Feature Request
+- Feel free to  [open an issue](https://github.com/deveshidwivedi/sketchparty/issues)  on GitHub to request any additional features you might need for your use case.
+<br />
