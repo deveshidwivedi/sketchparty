@@ -4,16 +4,24 @@ import { useBoardPosition } from "./useBoardPosition";
 import { socket } from "@/common/lib/socket";
 import { drawAllMoves } from "../helpers/Canvas.helpers";
 import { getPos } from "@/common/lib/getPos";
-import { useMyMoves } from "@/common/recoil/room";
+import { useMyMoves, useRoom } from "@/common/recoil/room";
 
 
 
 let tempMoves: [number, number][] = [];
 
+const setCtxOptions= (ctx: CanvasRenderingContext2D, options: CtxOptions)=> {
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    (ctx.lineWidth = options.lineWidth), (ctx.strokeStyle= options.lineColor);
+    if(options.erase) ctx.globalCompositeOperation = "destination-out";
+};
+
 export const useDraw = (
     ctx: CanvasRenderingContext2D | undefined,
     blocked: boolean,
 ) => {
+    const room=useRoom();
     const {handleRemoveMyMove, handleAddMyMove} = useMyMoves();
    
     const [drawing, setDrawing] = useState(false);
@@ -26,11 +34,7 @@ export const useDraw = (
 
     useEffect(() => {
         if (ctx) {
-            ctx.lineJoin = "round";
-            ctx.lineCap = "round";
-            ctx.lineWidth = options.lineWidth;
-            ctx.strokeStyle = options.lineColor;
-            if(options.erase) ctx.globalCompositeOperation = "destination-out";
+            setCtxOptions(ctx, options);
         }
     });
 
@@ -77,8 +81,23 @@ export const useDraw = (
         tempMoves = [[getPos(x, movedX), getPos(y, movedY)]];
     };
 
-    const handleDraw = (x: number, y: number) => {
+    const handleDraw = (x: number, y: number, shift?:boolean ) => {
         if (!ctx || !drawing || blocked) return;
+
+        if(shift){
+            tempMoves= tempMoves.slice(0,1);
+            drawAllMoves(ctx, room);
+            setCtxOptions(ctx, options)
+
+            ctx.beginPath();
+            ctx.lineTo(tempMoves[0][0], tempMoves[0][1]);
+            ctx.lineTo(getPos(x, movedX), getPos(y, movedY));   
+            ctx.stroke();
+            ctx.closePath();
+
+            tempMoves.push([getPos(x, movedX), getPos(y, movedY)]);
+            return ;
+        }
 
         ctx.lineTo(getPos(x, movedX), getPos(y, movedY));
         ctx.stroke();

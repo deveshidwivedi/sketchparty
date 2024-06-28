@@ -116,7 +116,8 @@ const Canvas = ({undoRef}: {undoRef: RefObject<HTMLButtonElement>}) => {
                 onMouseMove={(e) => {
                     handleDraw(
                         e.clientX,
-                        e.clientY
+                        e.clientY,
+                        e.shiftKey
                     );
                 }}
 
