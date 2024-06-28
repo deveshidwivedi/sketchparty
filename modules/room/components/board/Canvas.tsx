@@ -8,7 +8,7 @@ import { useSocketDraw } from "../../hooks/useSocketDraw";
 import { socket } from "@/common/lib/socket";
 import Minimap from "./Minimap";
 import { useRoom } from "@/common/recoil/room";
-import { drawAllMoves } from "../../helpers/Canvas.helpers";
+import { useMovesHandlers } from "../../hooks/useMovesHandlers";
 import { useBoardPosition } from "../../hooks/useBoardPosition";
 import Background from "./Background";
 import { useOptionsValue } from "@/common/recoil/options";
@@ -27,29 +27,15 @@ const Canvas = () => {
     const { width, height } = useViewportSize();
     const { x, y } = useBoardPosition();
 
+    const {handleUndo, drawAllMoves} = useMovesHandlers();
+
     useKeyPressEvent("Control", (e) => {
         if (e.ctrlKey && !dragging) {
             setDragging(true);
         }
     });
 
-    const copyCanvasToSmall = useCallback(() => {
-        if (canvasRef.current && smallCanvasRef.current) {
-            const smallCtx = smallCanvasRef.current.getContext("2d");
-            if (smallCtx) {
-                smallCtx.clearRect(0, 0, CANVAS_SIZE.width, CANVAS_SIZE.height);
-                smallCtx.drawImage(
-                    canvasRef.current,
-                    0,
-                    0,
-                    CANVAS_SIZE.width,
-                    CANVAS_SIZE.height
-                );
-            }
-        }
-    }, [canvasRef, smallCanvasRef]);
-
-    const { handleEndDrawing, handleDraw, handleStartDrawing, drawing, handleUndo } = useDraw(ctx, dragging);
+    const { handleEndDrawing, handleDraw, handleStartDrawing, drawing} = useDraw(dragging, drawAllMoves);
 
     useSocketDraw(ctx, drawing);
 
@@ -76,13 +62,6 @@ const Canvas = () => {
     useEffect(() => {
         if (ctx) socket.emit("joined_room");
     }, [ctx]);
-
-    useEffect(() => {
-        if (ctx) {
-            drawAllMoves(ctx, room, options);
-            copyCanvasToSmall();
-        }
-    }, [ctx, room, options]);
 
     return (
         <div className="relative h-full w-full overflow-hidden">
@@ -133,7 +112,6 @@ const Canvas = () => {
             />
             <Background bgRef={bgRef} />
             <Minimap
-                ref={smallCanvasRef}
                 dragging={dragging}
                 setMovedMiniMap={setMovedMiniMap}
             />
