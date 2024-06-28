@@ -1,12 +1,12 @@
 # 🎨SketchParty: Sketching and Fun for Everyone!
 
 - [About](#about)
-- Technologies Used
-- Features
-- Future Improvements
-- Getting Started
-- Demo Video
-- Contributing
+- [Technologies Used](#technologies-used)
+- [Features](#features)
+- [Future Improvements](#future-improvements)
+- [Getting Started](#installation)
+- [Demo Video](#demo)
+- [Contributing](#contribute)
   
   <br />
 
