@@ -10,6 +10,8 @@
   - [Draw Shapes](#shapes)
   - [Upload Images](#images)
   - [Real-Time Chat](#chat)
+
+- [Flow Chart](#flow)
     
   
 - [Future Improvements](#future-improvements)
@@ -64,6 +66,13 @@
   ![Screenshot 2024-06-28 191056](https://github.com/deveshidwivedi/sketchparty/assets/120312681/b825163c-f15f-4fbb-a362-c5dc211570a4)
 
   
+<br />
+
+ <a id="flow"></a>
+# Flow Chart
+
+![Screenshot 2024-06-24 214218](https://github.com/deveshidwivedi/sketchparty/assets/120312681/7de2f4c0-0fa9-44f6-98c3-765a1d45034d)
+
 <br />
 
   <a id="future-improvements"></a>
