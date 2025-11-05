@@ -6,9 +6,12 @@
     "dev": "nodemon server/index.ts",
     "build": "next build",
     "start": "next start",
+    "start:server": "node -r ts-node/register -r tsconfig-paths/register server/index.ts",
     "lint": "next lint"
   },
   "dependencies": {
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "@types/socket.io-client": "^3.0.0",
     "express": "^4.19.2",
     "framer-motion": "^11.2.10",
